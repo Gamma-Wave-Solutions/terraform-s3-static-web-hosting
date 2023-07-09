@@ -30,9 +30,10 @@ jobs:
           TARGET: ${{ inputs.target == '' && 'www-staging' || inputs.target }}
           WORKSPACE_TAGS: ${{ vars.WORKSPACE_TAGS }}
           TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
+          TFRC: ${{ secrets.TERRAFORM_CREDS }}
         run: |
           echo $TARGET
           mkdir ~/.terraform.d
-          echo ${{ secrets.TERRAFORM_CREDS }} >> ~/.terraform.d/credentials.tfrc.json
+          echo $TFRC > ~/.terraform.d/credentials.tfrc.json
           terraform init -var TERRAFORM_ORGANIZATION=${TERRAFORM_ORGANIZATION}
           terraform workspace list
