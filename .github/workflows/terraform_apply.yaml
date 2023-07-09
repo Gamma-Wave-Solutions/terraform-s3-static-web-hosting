@@ -26,6 +26,7 @@ jobs:
       WORKSPACE_TAGS: ${{ vars.WORKSPACE_TAGS }}
       TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
       TFRC: ${{ secrets.TERRAFORM_CREDS }}
+      INPUTS: ${{ vars.TERRAFORM_INPUTS }}
 
     steps:
       - name: Checkout Code
@@ -35,10 +36,12 @@ jobs:
           echo Setting up credentials
           mkdir ~/.terraform.d
           echo $TFRC > ~/.terraform.d/credentials.tfrc.json
-      - name: Initialize Terraform
+      - name: Setup Terraform
         run: |
           echo Will use workspace: $TF_WORKSPACE
           terraform init -var TERRAFORM_ORGANIZATION=${TERRAFORM_ORGANIZATION}
-          terraform workspace show
+          terraform workspace list
+          echo Creating auto tfvars file
+          echo $INPUTS > inputs.auto.tfvars
       - name: Apply Configuration
         run: terraform plan
