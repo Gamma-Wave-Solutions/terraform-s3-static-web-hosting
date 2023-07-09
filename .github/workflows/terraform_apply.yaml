@@ -21,19 +21,24 @@ jobs:
   apply:
     name: Terraform Apply
     runs-on: ubuntu-latest
+    env:
+      TF_WORKSPACE: ${{ inputs.target == '' && 'www-staging' || inputs.target }}
+      WORKSPACE_TAGS: ${{ vars.WORKSPACE_TAGS }}
+      TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
+      TFRC: ${{ secrets.TERRAFORM_CREDS }}
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Environment
-        env:
-          TF_WORKSPACE: ${{ inputs.target == '' && 'www-staging' || inputs.target }}
-          WORKSPACE_TAGS: ${{ vars.WORKSPACE_TAGS }}
-          TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
-          TFRC: ${{ secrets.TERRAFORM_CREDS }}
+      - name: Setup Credentials
         run: |
-          echo $TF_WORKSPACE
+          echo Setting up credentials
           mkdir ~/.terraform.d
           echo $TFRC > ~/.terraform.d/credentials.tfrc.json
+      - name: Initialize Terraform
+        run: |
+          echo Will use workspace: $TF_WORKSPACE
           terraform init -var TERRAFORM_ORGANIZATION=${TERRAFORM_ORGANIZATION}
-          terraform workspace list
+          terraform workspace show
+      - name: Apply Configuration
+        run: terraform plan
