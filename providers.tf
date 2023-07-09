@@ -1,9 +1,9 @@
 terraform {
   cloud {
-    organization = var.TERRAFORM_ORGANIZATION
+    organization = "gammawave-solutions"
 
     workspaces {
-      tags = var.WORKSPACE_TAGS
+      tags = "www"
     }
   }
   required_providers {
