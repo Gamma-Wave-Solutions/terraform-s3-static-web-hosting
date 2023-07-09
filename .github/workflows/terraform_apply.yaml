@@ -19,7 +19,7 @@ on:
 
 jobs:
   apply:
-    name: Terraform Apply
+    name: Apply Configuration
     runs-on: ubuntu-latest
     env:
       TF_WORKSPACE: ${{ inputs.target == '' && 'www-staging' || inputs.target }}
