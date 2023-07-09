@@ -28,4 +28,9 @@ jobs:
       - name: Environment
         env:
           TARGET: ${{ inputs.target == '' && 'www-staging' || inputs.target }}
-        run: echo $TARGET
+          WORKSPACE_TAGS: ${{ vars.WORKSPACE_TAGS }}
+          TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
+        run: |
+          echo $TARGET
+          terraform init -var TERRAFORM_ORGANIZATION=${TERRAFORM_ORGANIZATION}
+          terraform workspace list
