@@ -1,0 +1,31 @@
+name: "Update Environment"
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "env/**"
+  workflow_dispatch:
+    inputs:
+      target:
+        type: choice
+        description: Deployment Target
+        required: false
+        default: www-staging
+        options:
+          - "www-staging"
+          - "www-production"
+
+jobs:
+  apply:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Environment
+        env:
+          TARGET: ${{ inputs.target == '' && 'www-staging' || inputs.target }}
+        run: echo $TARGET
