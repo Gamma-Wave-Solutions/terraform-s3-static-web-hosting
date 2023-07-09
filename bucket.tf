@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "hosting_bucket" {
-  bucket = var.inputs[terraform.workspace].bucket_name
+  bucket = var.BUCKET_NAME
 }
 
 resource "aws_s3_bucket_policy" "public_read" {
