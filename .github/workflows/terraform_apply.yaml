@@ -42,4 +42,4 @@ jobs:
           terraform init -var TERRAFORM_ORGANIZATION=${TERRAFORM_ORGANIZATION}
           terraform workspace list
       - name: Apply Configuration
-        run: terraform plan
+        run: terraform apply --auto-approve
