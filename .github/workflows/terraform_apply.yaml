@@ -18,7 +18,6 @@ jobs:
       TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
       TFRC: ${{ secrets.TERRAFORM_CREDS }}
       INPUTS: ${{ vars.TERRAFORM_INPUTS }}
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
