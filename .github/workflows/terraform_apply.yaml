@@ -41,9 +41,5 @@ jobs:
           echo Will use workspace: $TF_WORKSPACE
           terraform init -var TERRAFORM_ORGANIZATION=${TERRAFORM_ORGANIZATION}
           terraform workspace list
-          echo Creating auto tfvars file
-          echo $INPUTS > inputs.auto.tfvars
-          echo ${{ vars.TERRAFORM_INPUTS }}
-          cat inputs.auto.tfvars
       - name: Apply Configuration
         run: terraform plan
