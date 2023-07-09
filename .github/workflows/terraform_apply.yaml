@@ -43,5 +43,6 @@ jobs:
           terraform workspace list
           echo Creating auto tfvars file
           echo $INPUTS > inputs.auto.tfvars
+          cat inputs.auto.tfvars
       - name: Apply Configuration
         run: terraform plan
