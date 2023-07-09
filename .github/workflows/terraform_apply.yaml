@@ -4,25 +4,16 @@ on:
   push:
     branches:
       - "main"
-    paths:
-      - "env/**"
+      - "staging"
   workflow_dispatch:
-    inputs:
-      target:
-        type: choice
-        description: Deployment Target
-        required: false
-        default: www-staging
-        options:
-          - "www-staging"
-          - "www-production"
 
 jobs:
   apply:
     name: Apply Configuration
     runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     env:
-      TF_WORKSPACE: ${{ inputs.target == '' && 'www-staging' || inputs.target }}
+      TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
       WORKSPACE_TAGS: ${{ vars.WORKSPACE_TAGS }}
       TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
       TFRC: ${{ secrets.TERRAFORM_CREDS }}
