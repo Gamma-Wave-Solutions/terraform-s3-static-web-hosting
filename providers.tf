@@ -3,7 +3,7 @@ terraform {
     organization = "gammawave-solutions"
 
     workspaces {
-      tags = "www"
+      tags = ["www"]
     }
   }
   required_providers {
