@@ -16,7 +16,7 @@ Make sure you include an [architectural diagram](https://aws.amazon.com/architec
 Copy and paste into your Terraform configuration, insert or update the
 variables, and run `terraform init`:
 
-```
+```go
 module my_web_hosting {
   source = "git@github.com:gammawave-geek/terraform-s3-static-web-hosting.git"
   AWS_DEFAULT_REGION    = "us-west-1"
