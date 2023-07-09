@@ -32,5 +32,7 @@ jobs:
           TERRAFORM_ORGANIZATION: ${{ vars.TERRAFORM_ORGANIZATION }}
         run: |
           echo $TARGET
+          mkdir ~/.terraform.d
+          echo ${{ secrets.TERRAFORM_CREDS }} >> ~/.terraform.d/credentials.tfrc.json
           terraform init -var TERRAFORM_ORGANIZATION=${TERRAFORM_ORGANIZATION}
           terraform workspace list
