@@ -1,0 +1,9 @@
+{
+  "image": "ghcr.io/Gamma-Wave-Solutions/devcontainer_terraform:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  }
+}
+  
