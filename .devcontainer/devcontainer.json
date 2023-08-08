@@ -1,9 +1,16 @@
 {
-  "image": "ghcr.io/Gamma-Wave-Solutions/devcontainer_terraform:latest",
+  "image": "ghcr.io/gamma-wave-solutions/devcontainer_base:latest",
   "customizations": {
     "vscode": {
-      "extensions": []
+      "extensions": [
+        "hashicorp.terraform"
+      ]
     }
-  }
+  },
+  "postAttachCommand": [
+    "fish",
+    "-c",
+    "mkdir ~/.terraform.d; echo \"$TERRAFORM_CREDS\" | base64 -d > ~/.terraform.d/credentials.tfrc.json"
+  ]
 }
   
