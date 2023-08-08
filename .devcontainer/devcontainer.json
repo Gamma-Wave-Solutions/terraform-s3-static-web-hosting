@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/gamma-wave-solutions/devcontainer_base:latest",
+  "image": "ghcr.io/gamma-wave-solutions/devcontainer_terraform:latest",
   "customizations": {
     "vscode": {
       "extensions": [
