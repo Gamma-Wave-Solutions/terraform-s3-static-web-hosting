@@ -10,7 +10,7 @@
   "postAttachCommand": [
     "fish",
     "-c",
-    "mkdir ~/.terraform.d; echo \"$TERRAFORM_CREDS\" | base64 -d > ~/.terraform.d/credentials.tfrc.json"
+    "mkdir ~/.terraform.d; echo $TERRAFORM_CREDS | base64 -d > ~/.terraform.d/credentials.tfrc.json"
   ]
 }
   
